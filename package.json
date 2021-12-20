@@ -1,13 +1,17 @@
 {
-  "name": "@privilageteam/requestdto",
+  "name": "@privilegeteam/requestdto",
   "version": "1.0.0",
   "description": "this package is for use request DTO functionality",
   "main": "index.js",
   "publishConfig": {
-    "access": "public"
+    "access": "private"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanAlcalaBeMaster/-privilageteam.git"
   },
   "author": "Juan David Alcala Sanchez",
   "license": "ISC",
@@ -19,5 +23,12 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/JuanAlcalaBeMaster/-privilageteam/issues"
+  },
+  "homepage": "https://github.com/JuanAlcalaBeMaster/-privilageteam#readme",
+  "keywords": [
+    "requestDto"
+  ]
 }
