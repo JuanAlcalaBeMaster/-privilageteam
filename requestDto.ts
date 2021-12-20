@@ -29,4 +29,4 @@ class ResponseDTO {
 
 }
 
-export = ResponseDTO;
+export default ResponseDTO;
