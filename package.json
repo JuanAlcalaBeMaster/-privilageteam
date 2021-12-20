@@ -16,6 +16,7 @@
   "author": "Juan David Alcala Sanchez",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "express": "^4.16.4",
     "ts-node-dev": "^1.1.8",
     "tslint": "^6.1.3",
