@@ -54,6 +54,10 @@ var ResponseDTO = /** @class */ (function () {
     ResponseDTO.prototype.customResponse = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                response.codeResponse = response.codeResponse || 200;
+                response.result = response.result || 'success';
+                response.message = response.message || '';
+                response.data = response.data || null;
                 return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
             });
         });
@@ -63,6 +67,8 @@ var ResponseDTO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 response.result = 'success';
                 response.codeResponse = 200;
+                response.message = response.message || "";
+                response.data = response.data || null;
                 return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
             });
         });
@@ -70,7 +76,10 @@ var ResponseDTO = /** @class */ (function () {
     ResponseDTO.prototype.errorServerResponse = function (response) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.res.status(500).json(__assign({}, response))];
+                response.result = 'server error';
+                response.codeResponse = 500;
+                response.message = response.message || response.message;
+                return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
             });
         });
     };

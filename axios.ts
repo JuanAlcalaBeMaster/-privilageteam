@@ -7,7 +7,7 @@ interface AuthInterface {
 interface BaseOptionRequest {
   url?: string;
   endpoint?: string;
-  data?: string;
+  data?: string | object | any[];
   headers?: object;
   auth?: AuthInterface;
 }
