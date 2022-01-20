@@ -1,4 +1,4 @@
-import express, { Response } from "express";
+import { Response } from "express";
 interface BaseResponse {
   codeResponse?: number;
   result?: string;
