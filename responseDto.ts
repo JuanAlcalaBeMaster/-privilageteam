@@ -1,41 +1,53 @@
-import { Response } from 'express';
+import express, { Response } from "express";
 interface BaseResponse {
-    codeResponse?: number;
-    result?:string;
-    message?:string;
-    data?: any;
+  codeResponse?: number;
+  result?: string;
+  message?: string;
+  data?: any;
 }
 
 class ResponseDTO {
-    res:Response;
-    
-    constructor(res: Response) {
-        this.res = res;
-    }
+  res: Response;
 
-    async customResponse(response: BaseResponse) {
-        response.codeResponse = response.codeResponse || 200;
-        response.result = response.result || 'success';
-        response.message = response.message || '';
-        response.data = response.data || null;
-        return this.res.status(response.codeResponse).json({ ...response });
-    }
+  constructor(res: Response) {
+    this.res = res;
+  }
 
-    async successResponse(response: BaseResponse) {
-        response.result = 'success';
-        response.codeResponse = 200;
-        response.message = response.message || "";
-        response.data = response.data || null;
-        return this.res.status(response.codeResponse).json({ ...response });
-    }
+  async customResponse(response?: BaseResponse) {
+    const defaultRes = {
+      codeResponse: 200,
+      result: "Success",
+      message: "",
+      data: null,
+    };
 
-    async errorServerResponse(response: BaseResponse) {
-        response.result = 'server error';
-        response.codeResponse = 500;
-        response.message = response.message || response.message;
-        return this.res.status(response.codeResponse).json({ ...response });
-    }
+    const customResult = { ...defaultRes, ...response };
 
+    return this.res.status(customResult.codeResponse).json({ ...customResult });
+  }
+
+  async successResponse(response?: BaseResponse) {
+    const defaultRes = {
+      codeResponse: 200,
+      result: "Success",
+      message: "",
+      data: null,
+    };
+    const customResult = { ...defaultRes, ...response };
+
+    return this.res.status(customResult.codeResponse).json({ ...customResult });
+  }
+
+  async errorServerResponse(response?: BaseResponse) {
+    const defaultRes = {
+      codeResponse: 500,
+      result: "Internal server error",
+      message: "",
+      data: null,
+    };
+    const customResult = { ...defaultRes, ...response };
+    return this.res.status(customResult.codeResponse).json({ ...customResult });
+  }
 }
 
 export default ResponseDTO;
