@@ -65,6 +65,7 @@ var ActiveCampaign = /** @class */ (function () {
                                     _a.trys.push([0, 2, , 3]);
                                     return [4 /*yield*/, request.post({
                                             data: __assign(__assign({}, params.bodyEmail), params.customTags),
+                                            typeDataSend: params.typeDataSend || '',
                                             url: "".concat(process.env.URL_BASE_ACTIVE_CAMPAIGN, "api_action=").concat(params.apiKeys.api_action, "&api_key=").concat(params.apiKeys.api_key, "&api_output=json")
                                         })];
                                 case 1:
