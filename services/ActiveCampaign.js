@@ -69,14 +69,11 @@ var ActiveCampaign = /** @class */ (function () {
                                         })];
                                 case 1:
                                     requestAction = _a.sent();
-                                    if (requestAction.status == 200) {
-                                        results = requestAction.data;
-                                        return [2 /*return*/, resolve(results)];
+                                    if (requestAction.result_code == 0) {
+                                        throw requestAction;
                                     }
-                                    else {
-                                        return [2 /*return*/, reject(false)];
-                                    }
-                                    return [3 /*break*/, 3];
+                                    results = requestAction.data;
+                                    return [2 /*return*/, resolve(results)];
                                 case 2:
                                     error_1 = _a.sent();
                                     console.log("response catch", error_1);
@@ -91,4 +88,3 @@ var ActiveCampaign = /** @class */ (function () {
     return ActiveCampaign;
 }());
 exports["default"] = ActiveCampaign;
-;

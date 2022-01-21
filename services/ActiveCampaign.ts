@@ -21,16 +21,15 @@ export default class ActiveCampaign {
           data: { ...params.bodyEmail, ...params.customTags },
           url: `${process.env.URL_BASE_ACTIVE_CAMPAIGN}api_action=${params.apiKeys.api_action}&api_key=${params.apiKeys.api_key}&api_output=json`,
         });
-        if (requestAction.status == 200) {
-          const results = requestAction.data;
-          return resolve(results);
-        } else {
-          return reject(false);
+        if (requestAction.result_code == 0) {
+          throw requestAction;
         }
+        const results = requestAction.data;
+        return resolve(results);
       } catch (error) {
         console.log("response catch", error);
         return reject(false);
       }
     });
   }
-};
+}

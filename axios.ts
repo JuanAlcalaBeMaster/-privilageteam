@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
 interface AuthInterface {
   token?: string;
@@ -7,18 +7,19 @@ interface AuthInterface {
 interface BaseOptionRequest {
   url?: string;
   endpoint?: string;
-  data?: string | object | any[];
+  data?: string | object | any[] | any;
+  typeDataSend?: string;
   headers?: object;
   auth?: AuthInterface;
 }
 
 const headerObjectDefault: any = {
   token: (token: string) => ({
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   }),
   default: () => ({
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   }),
 };
 
@@ -46,7 +47,7 @@ export default class Request {
 
       const response: AxiosResponse = await axios.get(
         `${options.url ? options.url : this.baseUrl + options.endpoint}`,
-        { ...headersTemp },
+        { ...headersTemp }
       );
       return response.data;
     } catch (error) {
@@ -64,12 +65,21 @@ export default class Request {
           ? Request.setAuthorizationDefault(options.auth)
           : headerObjectDefault.default;
       }
+
       options.data = options.data || {};
+
+      if (options.typeDataSend == "UrlParams") {
+        let formData = new URLSearchParams();
+        for (const key in options.data) {
+          formData.append(`${key}`, options.data[`${key}`]);
+        }
+        options.data = formData;
+      }
 
       const response: AxiosResponse = await axios.post(
         `${options.url ? options.url : this.baseUrl + options.endpoint}`,
         options.data,
-        { ...headersTemp },
+        { ...headersTemp }
       );
       return response.data;
     } catch (error) {
@@ -91,7 +101,7 @@ export default class Request {
       const response: AxiosResponse = await axios.post(
         `${options.url ? options.url : this.baseUrl + options.endpoint}`,
         JSON.stringify(options.data) || {},
-        { ...headersTemp },
+        { ...headersTemp }
       );
       return response.data;
     } catch (error) {

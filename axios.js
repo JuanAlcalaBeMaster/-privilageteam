@@ -50,11 +50,11 @@ exports.__esModule = true;
 var axios_1 = require("axios");
 var headerObjectDefault = {
     token: function (token) { return ({
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
     }); },
     "default": function () { return ({
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
     }); }
 };
 var Request = /** @class */ (function () {
@@ -94,7 +94,7 @@ var Request = /** @class */ (function () {
     };
     Request.prototype.post = function (options) {
         return __awaiter(this, void 0, void 0, function () {
-            var headersTemp, response, error_2;
+            var headersTemp, formData, key, response, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -109,6 +109,13 @@ var Request = /** @class */ (function () {
                                 : headerObjectDefault["default"];
                         }
                         options.data = options.data || {};
+                        if (options.typeDataSend == "UrlParams") {
+                            formData = new URLSearchParams();
+                            for (key in options.data) {
+                                formData.append("".concat(key), options.data["".concat(key)]);
+                            }
+                            options.data = formData;
+                        }
                         return [4 /*yield*/, axios_1["default"].post("".concat(options.url ? options.url : this.baseUrl + options.endpoint), options.data, __assign({}, headersTemp))];
                     case 1:
                         response = _a.sent();
