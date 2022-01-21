@@ -108,7 +108,8 @@ var Request = /** @class */ (function () {
                                 ? Request.setAuthorizationDefault(options.auth)
                                 : headerObjectDefault["default"];
                         }
-                        return [4 /*yield*/, axios_1["default"].post("".concat(options.url ? options.url : this.baseUrl + options.endpoint), JSON.stringify(options.data) || {}, __assign({}, headersTemp))];
+                        options.data = options.data || {};
+                        return [4 /*yield*/, axios_1["default"].post("".concat(options.url ? options.url : this.baseUrl + options.endpoint), options.data, __assign({}, headersTemp))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];

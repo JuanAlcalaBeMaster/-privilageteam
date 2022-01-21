@@ -64,10 +64,11 @@ export default class Request {
           ? Request.setAuthorizationDefault(options.auth)
           : headerObjectDefault.default;
       }
+      options.data = options.data || {};
 
       const response: AxiosResponse = await axios.post(
         `${options.url ? options.url : this.baseUrl + options.endpoint}`,
-        JSON.stringify(options.data) || {},
+        options.data,
         { ...headersTemp },
       );
       return response.data;

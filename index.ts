@@ -1,5 +1,6 @@
 
-import ResponseDTO from "./responseDTO";
 import Request from "./axios";
+import ResponseDTO from "./responseDto";
+import ActiveCampaig from "./services/ActiveCampaign";
 
-export {ResponseDTO, Request};
+export {ResponseDTO, Request, ActiveCampaig};
