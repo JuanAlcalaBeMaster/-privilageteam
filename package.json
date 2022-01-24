@@ -1,10 +1,6 @@
 {
   "name": "@privilegeteam/requestdto",
-<<<<<<< HEAD
-  "version": "6.1.2",
-=======
-  "version": "7.0.0",
->>>>>>> caca40ef6a7cb4073bbf5a08cae01842484e1064
+  "version": "7.0.1",
   "description": "this package is for use request DTO functionality",
   "main": "index.js",
   "publishConfig": {

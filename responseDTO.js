@@ -53,33 +53,46 @@ var ResponseDTO = /** @class */ (function () {
     }
     ResponseDTO.prototype.customResponse = function (response) {
         return __awaiter(this, void 0, void 0, function () {
+            var defaultRes, customResult;
             return __generator(this, function (_a) {
-                response.codeResponse = response.codeResponse || 200;
-                response.result = response.result || 'success';
-                response.message = response.message || '';
-                response.data = response.data || null;
-                return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
+                defaultRes = {
+                    codeResponse: 200,
+                    result: "Success",
+                    message: "",
+                    data: null
+                };
+                customResult = __assign(__assign({}, defaultRes), response);
+                return [2 /*return*/, this.res.status(customResult.codeResponse).json(__assign({}, customResult))];
             });
         });
     };
     ResponseDTO.prototype.successResponse = function (response) {
         return __awaiter(this, void 0, void 0, function () {
+            var defaultRes, customResult;
             return __generator(this, function (_a) {
-                response.result = 'success';
-                response.codeResponse = 200;
-                response.message = response.message || "";
-                response.data = response.data || null;
-                return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
+                defaultRes = {
+                    codeResponse: 200,
+                    result: "Success",
+                    message: "",
+                    data: null
+                };
+                customResult = __assign(__assign({}, defaultRes), response);
+                return [2 /*return*/, this.res.status(customResult.codeResponse).json(__assign({}, customResult))];
             });
         });
     };
     ResponseDTO.prototype.errorServerResponse = function (response) {
         return __awaiter(this, void 0, void 0, function () {
+            var defaultRes, customResult;
             return __generator(this, function (_a) {
-                response.result = 'server error';
-                response.codeResponse = 500;
-                response.message = response.message || response.message;
-                return [2 /*return*/, this.res.status(response.codeResponse).json(__assign({}, response))];
+                defaultRes = {
+                    codeResponse: 500,
+                    result: "Internal server error",
+                    message: "",
+                    data: null
+                };
+                customResult = __assign(__assign({}, defaultRes), response);
+                return [2 /*return*/, this.res.status(customResult.codeResponse).json(__assign({}, customResult))];
             });
         });
     };
