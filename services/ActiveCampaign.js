@@ -58,7 +58,7 @@ var ActiveCampaign = /** @class */ (function () {
             return __generator(this, function (_a) {
                 request = new axios_1["default"]();
                 return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                        var requestAction, results, error_1;
+                        var requestAction, error_1;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -70,11 +70,11 @@ var ActiveCampaign = /** @class */ (function () {
                                         })];
                                 case 1:
                                     requestAction = _a.sent();
+                                    console.log("response emil active campaign", requestAction);
                                     if (requestAction.result_code == 0) {
-                                        throw requestAction;
+                                        throw false;
                                     }
-                                    results = requestAction.data;
-                                    return [2 /*return*/, resolve(results)];
+                                    return [2 /*return*/, resolve(requestAction)];
                                 case 2:
                                     error_1 = _a.sent();
                                     console.log("response catch", error_1);

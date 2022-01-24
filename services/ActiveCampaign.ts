@@ -23,11 +23,11 @@ export default class ActiveCampaign {
           typeDataSend: params.typeDataSend || '',
           url: `${process.env.URL_BASE_ACTIVE_CAMPAIGN}api_action=${params.apiKeys.api_action}&api_key=${params.apiKeys.api_key}&api_output=json`,
         });
+        console.log("response emil active campaign", requestAction);
         if (requestAction.result_code == 0) {
-          throw requestAction;
+          throw false;
         }
-        const results = requestAction.data;
-        return resolve(results);
+        return resolve(requestAction);
       } catch (error) {
         console.log("response catch", error);
         return reject(false);
