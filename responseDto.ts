@@ -42,7 +42,7 @@ class ResponseDTO {
     const defaultRes = {
       codeResponse: 500,
       result: "Internal server error",
-      message: "",
+      message: "Ha sucedido un error, por favor intente más tarde.",
       data: null,
     };
     const customResult = { ...defaultRes, ...response };
