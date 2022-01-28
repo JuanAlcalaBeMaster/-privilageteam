@@ -1,4 +1,4 @@
-import Request from "../axios";
+import Request from "../lib/axios";
 
 interface SendEmail {
   bodyEmail: {

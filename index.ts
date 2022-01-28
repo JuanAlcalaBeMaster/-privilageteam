@@ -1,7 +1,7 @@
-import Request from "./axios";
-import { HttpError } from "./errorHandling";
-import ResponseDTO from "./responseDto";
-import ActiveCampaign from "./services/ActiveCampaign";
-import EmailSMTP from "./services/Email";
+import Request from "./src/lib/axios";
+import { HttpError } from "./src/lib/errorHandling";
+import ResponseDTO from "./src/lib/responseDto";
+import ActiveCampaign from "./src/services/ActiveCampaign";
+import EmailSMTP from "./src/services/Email";
 
 export { ResponseDTO, Request, ActiveCampaign, EmailSMTP, HttpError };
