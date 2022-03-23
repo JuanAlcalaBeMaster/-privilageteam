@@ -16,7 +16,7 @@ class ResponseDTO {
   async customResponse(response?: BaseResponse) {
     const defaultRes = {
       codeResponse: 200,
-      result: "Success",
+      result: "success",
       message: "",
       data: null,
     };
@@ -29,7 +29,7 @@ class ResponseDTO {
   async successResponse(response?: BaseResponse) {
     const defaultRes = {
       codeResponse: 200,
-      result: "Success",
+      result: "success",
       message: "",
       data: null,
     };
