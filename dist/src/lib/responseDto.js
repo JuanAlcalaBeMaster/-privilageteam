@@ -17,7 +17,7 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const defaultRes = {
                 codeResponse: 200,
-                result: "Success",
+                result: "success",
                 message: "",
                 data: null,
             };
@@ -29,7 +29,7 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const defaultRes = {
                 codeResponse: 200,
-                result: "Success",
+                result: "success",
                 message: "",
                 data: null,
             };
