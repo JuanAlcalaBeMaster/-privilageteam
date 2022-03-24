@@ -27,7 +27,8 @@ export default class Request {
   baseUrl: string;
 
   constructor(baseUrl?: string) {
-    this.baseUrl = baseUrl || `${process.env.URL_BASE_REQUEST}`;
+    const urlEnviromentDefault = `${process.env.ENVIRONMENT}` !== 'Local' ? `${process.env.URL_BASE_REQUEST}` : `${process.env.URL_LOCAL}`
+    this.baseUrl = baseUrl || urlEnviromentDefault;
   }
 
   static setAuthorizationDefault(auth: AuthInterface) {
