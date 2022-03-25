@@ -24,7 +24,8 @@ const headerObjectDefault = {
 };
 class Request {
     constructor(baseUrl) {
-        this.baseUrl = baseUrl || `${process.env.URL_BASE_REQUEST}`;
+        const urlEnviromentDefault = `${process.env.ENVIRONMENT}` !== 'Local' ? `${process.env.URL_BASE_REQUEST}` : `${process.env.URL_LOCAL}`;
+        this.baseUrl = baseUrl || urlEnviromentDefault;
     }
     static setAuthorizationDefault(auth) {
         return headerObjectDefault[Object.keys(auth)[0]](auth.token);
