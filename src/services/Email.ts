@@ -2,7 +2,8 @@ const nodemailer = require('nodemailer');
 
 interface SendEmail {
   bodyEmail: {
-    email: string;
+    email?: string;
+    bcc?: Array<string>;
     subject: string;
     html: string;
   };
@@ -17,7 +18,7 @@ interface SendEmail {
 
 const initialEmail = (data: SendEmail) => ({
   bodyEmail: {
-    email: data.bodyEmail.email,
+    email: data.bodyEmail.email || data.bodyEmail.bcc,
     subject: data.bodyEmail.subject,
     html: data.bodyEmail.html,
   },
@@ -44,10 +45,12 @@ export default class EmailSMTP {
             pass: dataEmail.apiKeys.PASSWORD_SMTP, // generated ethereal password
           },
         });
+        // Bcc or only one recipient email
+        const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.email }
         // send mail with defined transport object
         let info = await transporter.sendMail({
           from: `"${dataEmail.apiKeys.SENDERNAME_SMTP}" <${dataEmail.apiKeys.EMAIL_SMTP}>`, // sender address
-          to: `${dataEmail.bodyEmail.email}`, // list of receivers
+          ...recipientType,
           subject: `${dataEmail.bodyEmail.subject}`, // Subject line
           html: `${dataEmail.bodyEmail.html}`, // html body
         });
