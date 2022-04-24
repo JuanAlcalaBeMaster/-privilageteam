@@ -47,7 +47,7 @@ export default class EmailSMTP {
           },
         });
         // Bcc or only one recipient email
-        const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.email }
+        const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.bcc }
         // send mail with defined transport object
         let info = await transporter.sendMail({
           from: `"${dataEmail.apiKeys.SENDERNAME_SMTP}" <${dataEmail.apiKeys.EMAIL_SMTP}>`, // sender address

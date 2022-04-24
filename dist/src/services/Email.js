@@ -42,7 +42,7 @@ class EmailSMTP {
                         },
                     });
                     // Bcc or only one recipient email
-                    const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.email };
+                    const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.bcc };
                     // send mail with defined transport object
                     let info = yield transporter.sendMail(Object.assign(Object.assign({ from: `"${dataEmail.apiKeys.SENDERNAME_SMTP}" <${dataEmail.apiKeys.EMAIL_SMTP}>` }, recipientType), { subject: `${dataEmail.bodyEmail.subject}`, html: `${dataEmail.bodyEmail.html}` }));
                     if (info.messageId) {
