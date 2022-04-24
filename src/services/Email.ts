@@ -18,7 +18,8 @@ interface SendEmail {
 
 const initialEmail = (data: SendEmail) => ({
   bodyEmail: {
-    email: data.bodyEmail.email || data.bodyEmail.bcc,
+    email: data.bodyEmail.email,
+    bcc: data.bodyEmail.bcc,
     subject: data.bodyEmail.subject,
     html: data.bodyEmail.html,
   },

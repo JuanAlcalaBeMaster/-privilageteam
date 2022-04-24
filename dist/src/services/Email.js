@@ -14,7 +14,8 @@ const initialEmail = (data) => {
     var _a, _b, _c, _d, _e;
     return ({
         bodyEmail: {
-            email: data.bodyEmail.email || data.bodyEmail.bcc,
+            email: data.bodyEmail.email,
+            bcc: data.bodyEmail.bcc,
             subject: data.bodyEmail.subject,
             html: data.bodyEmail.html,
         },
