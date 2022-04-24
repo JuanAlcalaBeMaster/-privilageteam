@@ -14,7 +14,7 @@ const initialEmail = (data) => {
     var _a, _b, _c, _d, _e;
     return ({
         bodyEmail: {
-            email: data.bodyEmail.email,
+            email: data.bodyEmail.email || data.bodyEmail.bcc,
             subject: data.bodyEmail.subject,
             html: data.bodyEmail.html,
         },
@@ -40,13 +40,10 @@ class EmailSMTP {
                             pass: dataEmail.apiKeys.PASSWORD_SMTP, // generated ethereal password
                         },
                     });
+                    // Bcc or only one recipient email
+                    const recipientType = dataEmail.bodyEmail.email ? { to: `${dataEmail.bodyEmail.email}` } : { bcc: dataEmail.bodyEmail.email };
                     // send mail with defined transport object
-                    let info = yield transporter.sendMail({
-                        from: `"${dataEmail.apiKeys.SENDERNAME_SMTP}" <${dataEmail.apiKeys.EMAIL_SMTP}>`,
-                        to: `${dataEmail.bodyEmail.email}`,
-                        subject: `${dataEmail.bodyEmail.subject}`,
-                        html: `${dataEmail.bodyEmail.html}`, // html body
-                    });
+                    let info = yield transporter.sendMail(Object.assign(Object.assign({ from: `"${dataEmail.apiKeys.SENDERNAME_SMTP}" <${dataEmail.apiKeys.EMAIL_SMTP}>` }, recipientType), { subject: `${dataEmail.bodyEmail.subject}`, html: `${dataEmail.bodyEmail.html}` }));
                     if (info.messageId) {
                         resolve(info);
                     }
