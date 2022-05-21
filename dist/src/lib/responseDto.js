@@ -17,7 +17,7 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const defaultRes = {
                 codeResponse: 200,
-                result: "success",
+                result: true,
                 message: "",
                 data: null,
             };
@@ -29,7 +29,7 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const defaultRes = {
                 codeResponse: 200,
-                result: "success",
+                result: true,
                 message: "",
                 data: null,
             };
@@ -41,7 +41,7 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             const defaultRes = {
                 codeResponse: 500,
-                result: "Internal server error",
+                result: false,
                 message: "Ha sucedido un error, por favor intente más tarde.",
                 data: null,
             };

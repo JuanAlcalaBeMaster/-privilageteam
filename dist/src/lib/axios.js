@@ -46,7 +46,8 @@ class Request {
                 return response.data;
             }
             catch (error) {
-                throw new Error(`${error}`);
+                console.log('error', error);
+                throw error;
             }
         });
     }
@@ -74,7 +75,7 @@ class Request {
                 return response.data;
             }
             catch (error) {
-                throw new Error(`Request Error: ${error}`);
+                throw error;
             }
         });
     }
@@ -94,7 +95,7 @@ class Request {
                 return response.data;
             }
             catch (error) {
-                throw new Error(`Request Error: ${error}`);
+                throw error;
             }
         });
     }

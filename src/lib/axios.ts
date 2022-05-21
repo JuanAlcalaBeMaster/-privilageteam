@@ -52,7 +52,8 @@ export default class Request {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`${error}`);
+      console.log('error', error);
+      throw error;
     }
   }
 
@@ -83,8 +84,8 @@ export default class Request {
         { ...headersTemp }
       );
       return response.data;
-    } catch (error) {
-      throw new Error(`Request Error: ${error}`);
+    } catch (error: any) {
+      throw error;
     }
   }
 
@@ -106,7 +107,7 @@ export default class Request {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Request Error: ${error}`);
+      throw error;
     }
   }
 }

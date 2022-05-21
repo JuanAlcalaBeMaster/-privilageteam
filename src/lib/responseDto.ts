@@ -1,7 +1,7 @@
 import { Response } from "express";
 interface BaseResponse {
   codeResponse?: number;
-  result?: string;
+  result?: string | Boolean;
   message?: string;
   data?: any;
 }
@@ -16,7 +16,7 @@ class ResponseDTO {
   async customResponse(response?: BaseResponse) {
     const defaultRes = {
       codeResponse: 200,
-      result: "success",
+      result: true,
       message: "",
       data: null,
     };
@@ -29,7 +29,7 @@ class ResponseDTO {
   async successResponse(response?: BaseResponse) {
     const defaultRes = {
       codeResponse: 200,
-      result: "success",
+      result: true,
       message: "",
       data: null,
     };
@@ -41,13 +41,14 @@ class ResponseDTO {
   async errorServerResponse(response?: BaseResponse) {
     const defaultRes = {
       codeResponse: 500,
-      result: "Internal server error",
+      result: false,
       message: "Ha sucedido un error, por favor intente más tarde.",
       data: null,
     };
     const customResult = { ...defaultRes, ...response };
     return this.res.status(customResult.codeResponse).json({ ...customResult });
   }
+
 }
 
 export default ResponseDTO;
