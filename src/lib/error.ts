@@ -14,19 +14,14 @@ interface ErrorControlled {
 }
 
 class ResponseDTO {
-  res: Response;
-
-  constructor(res: Response) {
-    this.res = res;
-  }
 
   async generateErrorControlled(errorInfo: ErrorControlled) {
       console.log(' error generate ', errorInfo);
-    const errorException: any = new Error(errorInfo.message);
-        errorException.name = errorInfo.nameError;
-        errorException.code = errorInfo.code;
-        errorException.exception = true;
-    throw errorException;
+      const errorException: any = new Error(errorInfo.message);
+          errorException.name = errorInfo.nameError;
+          errorException.code = errorInfo.code;
+          errorException.exception = true;
+      throw errorException;
   }
 
   async catchController(error: any) {
@@ -43,8 +38,9 @@ class ResponseDTO {
     throw error;
   }
 
-  async catchParentResponse(error: any) {
+  async catchParentResponse(error: any, res: Response) {
     console.log(' error catchParentResponse ', error);
+
     const defaultRes: BaseResponse = {
       codeResponse: 500,
       result: false,
@@ -55,10 +51,10 @@ class ResponseDTO {
     if(error.exception) {
       defaultRes.codeResponse = error.code;
       defaultRes.message = error.message;
-      return this.res.status(error.code).json({ ...defaultRes });
+      return res.status(error.code).json({ ...defaultRes });
     }
 
-    return this.res.status(defaultRes.codeResponse as number).json({ ...defaultRes });
+    return res.status(defaultRes.codeResponse as number).json({ ...defaultRes });
   }
 }
 

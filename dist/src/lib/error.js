@@ -10,9 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class ResponseDTO {
-    constructor(res) {
-        this.res = res;
-    }
     generateErrorControlled(errorInfo) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(' error generate ', errorInfo);
@@ -37,7 +34,7 @@ class ResponseDTO {
             throw error;
         });
     }
-    catchParentResponse(error) {
+    catchParentResponse(error, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(' error catchParentResponse ', error);
             const defaultRes = {
@@ -49,9 +46,9 @@ class ResponseDTO {
             if (error.exception) {
                 defaultRes.codeResponse = error.code;
                 defaultRes.message = error.message;
-                return this.res.status(error.code).json(Object.assign({}, defaultRes));
+                return res.status(error.code).json(Object.assign({}, defaultRes));
             }
-            return this.res.status(defaultRes.codeResponse).json(Object.assign({}, defaultRes));
+            return res.status(defaultRes.codeResponse).json(Object.assign({}, defaultRes));
         });
     }
 }

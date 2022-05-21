@@ -52,7 +52,6 @@ export default class Request {
       );
       return response.data;
     } catch (error) {
-      console.log('error', error);
       throw error;
     }
   }
