@@ -54,8 +54,8 @@ export default class Logger {
       }
         
         await dynamoDB.setItem(
-            params.itemDynamoDefault!.tableName || params.itemDynamoCustom!.tableName,
-            params.itemDynamoDefault!.item || params.itemDynamoCustom!.item
+          params.itemDynamoDefault ? params.itemDynamoDefault!.tableName : params.itemDynamoCustom!.tableName,
+          params.itemDynamoDefault ? params.itemDynamoDefault!.item : params.itemDynamoCustom!.item
         )
     }
       

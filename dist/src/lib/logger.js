@@ -51,6 +51,6 @@ Logger.actionByDialect = {
         if (params.itemDynamoDefault) {
             params.itemDynamoDefault.item.typeLog.S = params.itemDynamoDefault.item.typeLog.S || level;
         }
-        yield dynamoAws_1.default.setItem(params.itemDynamoDefault.tableName || params.itemDynamoCustom.tableName, params.itemDynamoDefault.item || params.itemDynamoCustom.item);
+        yield dynamoAws_1.default.setItem(params.itemDynamoDefault ? params.itemDynamoDefault.tableName : params.itemDynamoCustom.tableName, params.itemDynamoDefault ? params.itemDynamoDefault.item : params.itemDynamoCustom.item);
     })
 };
