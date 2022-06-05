@@ -4,5 +4,6 @@ import ResponseDTO from "./src/lib/responseDto";
 import ActiveCampaign from "./src/services/ActiveCampaign";
 import EmailSMTP from "./src/services/Email";
 import ErrorController from "./src/lib/error";
+import Logger from "./src/lib/logger";
 
-export { ResponseDTO, Request, ActiveCampaign, EmailSMTP, HttpError, ErrorController };
+export { ResponseDTO, Request, ActiveCampaign, EmailSMTP, HttpError, ErrorController, Logger };
