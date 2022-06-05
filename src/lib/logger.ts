@@ -35,10 +35,6 @@ export default class Logger {
 
   private static validationDataByDialect: any = {
     dynamo: (params: LogParamsInterface) => {
-      console.log('default vallidate', params.itemDynamoDefault);
-        console.log('custom valdiate', params.itemDynamoCustom);
-        console.log('cparams.itemDynamoCustom!.tableName', params.itemDynamoCustom!.tableName);
-        console.log('params.itemDynamoDefault!.tableName', params.itemDynamoDefault);
       let validate: Boolean = true;
       if (params.itemDynamoCustom) {
         validate = params.itemDynamoCustom!.tableName.length > 0;
@@ -53,9 +49,6 @@ export default class Logger {
 
   private static actionByDialect: any = {
     dynamo: async (params: LogParamsInterface, level: string) => {
-      console.log('default action', params.itemDynamoDefault);
-        console.log('custom action', params.itemDynamoCustom);
-        console.log('params.itemDynamoDefault!.item', params.itemDynamoDefault!.item);
       if(params.itemDynamoDefault) {
         params.itemDynamoDefault!.item.typeLog!.S = params.itemDynamoDefault!.item.typeLog!.S || level;
       }
@@ -70,8 +63,6 @@ export default class Logger {
 
   async log(params: LogParamsInterface) {
     try {
-        console.log('log params', params);
-        console.log('log config', this.config);
       Logger.validationDataByDialect[`${this.config.dialect}`](params, this.config.level);
       return await Logger.actionByDialect[`${this.config.dialect}`](params, this.config.level);
     } catch (error) {
