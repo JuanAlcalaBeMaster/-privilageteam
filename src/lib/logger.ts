@@ -22,8 +22,8 @@ interface ItemDynamoDefaultInterface {
 }
 
 interface LogParamsInterface {
-  itemDynamoCustom: ItemDynamoCustomInterface;
-  itemDynamoDefault: ItemDynamoDefaultInterface;
+  itemDynamoCustom?: ItemDynamoCustomInterface;
+  itemDynamoDefault?: ItemDynamoDefaultInterface;
 }
 
 export default class Logger {
@@ -36,12 +36,12 @@ export default class Logger {
   private static validationDataByDialect: any = {
     dynamo: (params: LogParamsInterface) => {
       let validate: Boolean = true;
-      if (params.itemDynamoCustom.tableName) {
-        validate = params.itemDynamoCustom.tableName.length > 0;
-        validate = !params.itemDynamoCustom.item ? false : true;
-      } else if (params.itemDynamoDefault.tableName) {
-        validate = params.itemDynamoDefault.tableName.length > 0;
-        validate = params.itemDynamoDefault.item.date.S.length > 0;
+      if (params.itemDynamoCustom!.tableName) {
+        validate = params.itemDynamoCustom!.tableName.length > 0;
+        validate = !params.itemDynamoCustom!.item ? false : true;
+      } else if (params.itemDynamoDefault!.tableName) {
+        validate = params.itemDynamoDefault!.tableName.length > 0;
+        validate = params.itemDynamoDefault!.item.date.S.length > 0;
       }
       return validate;
     },
@@ -49,12 +49,12 @@ export default class Logger {
 
   private static actionByDialect: any = {
     dynamo: async (params: LogParamsInterface, level: string) => {
-        params.itemDynamoDefault.item.typeLog!.S = params.itemDynamoDefault.item.typeLog!.S || level;
+        params.itemDynamoDefault!.item.typeLog!.S = params.itemDynamoDefault!.item.typeLog!.S || level;
         console.log('default', params.itemDynamoDefault);
         console.log('custom', params.itemDynamoCustom);
         await dynamoDB.setItem(
-            params.itemDynamoDefault.tableName || params.itemDynamoCustom.tableName,
-            params.itemDynamoDefault.item || params.itemDynamoCustom.item
+            params.itemDynamoDefault!.tableName || params.itemDynamoCustom!.tableName,
+            params.itemDynamoDefault!.item || params.itemDynamoCustom!.item
         )
     }
       
