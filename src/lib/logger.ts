@@ -49,7 +49,9 @@ export default class Logger {
 
   private static actionByDialect: any = {
     dynamo: async (params: LogParamsInterface, level: string) => {
+      if(params.itemDynamoDefault!.item) {
         params.itemDynamoDefault!.item.typeLog!.S = params.itemDynamoDefault!.item.typeLog!.S || level;
+      }
         console.log('default', params.itemDynamoDefault);
         console.log('custom', params.itemDynamoCustom);
         await dynamoDB.setItem(

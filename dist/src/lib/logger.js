@@ -50,7 +50,9 @@ Logger.validationDataByDialect = {
 };
 Logger.actionByDialect = {
     dynamo: (params, level) => __awaiter(void 0, void 0, void 0, function* () {
-        params.itemDynamoDefault.item.typeLog.S = params.itemDynamoDefault.item.typeLog.S || level;
+        if (params.itemDynamoDefault.item) {
+            params.itemDynamoDefault.item.typeLog.S = params.itemDynamoDefault.item.typeLog.S || level;
+        }
         console.log('default', params.itemDynamoDefault);
         console.log('custom', params.itemDynamoCustom);
         yield dynamoAws_1.default.setItem(params.itemDynamoDefault.tableName || params.itemDynamoCustom.tableName, params.itemDynamoDefault.item || params.itemDynamoCustom.item);
