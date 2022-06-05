@@ -38,12 +38,12 @@ export default class Logger {
       console.log('default vallidate', params.itemDynamoDefault);
         console.log('custom valdiate', params.itemDynamoCustom);
         console.log('cparams.itemDynamoCustom!.tableName', params.itemDynamoCustom!.tableName);
-        console.log('params.itemDynamoDefault!.tableName', params.itemDynamoDefault!.tableName);
+        console.log('params.itemDynamoDefault!.tableName', params.itemDynamoDefault);
       let validate: Boolean = true;
-      if (params.itemDynamoCustom!.tableName) {
+      if (params.itemDynamoCustom) {
         validate = params.itemDynamoCustom!.tableName.length > 0;
         validate = !params.itemDynamoCustom!.item ? false : true;
-      } else if (params.itemDynamoDefault!.tableName) {
+      } else if (params.itemDynamoDefault) {
         validate = params.itemDynamoDefault!.tableName.length > 0;
         validate = params.itemDynamoDefault!.item.date.S.length > 0;
       }
@@ -56,7 +56,7 @@ export default class Logger {
       console.log('default action', params.itemDynamoDefault);
         console.log('custom action', params.itemDynamoCustom);
         console.log('params.itemDynamoDefault!.item', params.itemDynamoDefault!.item);
-      if(params.itemDynamoDefault!.item) {
+      if(params.itemDynamoDefault) {
         params.itemDynamoDefault!.item.typeLog!.S = params.itemDynamoDefault!.item.typeLog!.S || level;
       }
         
