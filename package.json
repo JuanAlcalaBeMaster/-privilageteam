@@ -1,6 +1,6 @@
 {
   "name": "@privilegeteam/requestdto",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "this package is for use request DTO functionality",
   "main": "./dist/index.js",
   "publishConfig": {
