@@ -24,14 +24,18 @@ class ResponseDTO {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('errror controolled', error);
             /** validation for errors from Requests ( axios , fetch ) */
-            if (error.response && !error.response.data.result) {
+            if (error.response && !error.response.data.result && error.response.data.controlled) {
                 const errorException = new Error(error.response.data.message);
                 errorException.name = 'ERROR-CONTROLLED-REQUEST';
                 errorException.code = error.response.status;
                 errorException.exception = true;
                 throw errorException;
             }
-            throw error;
+            const errorException = new Error(error.response.data.message);
+            errorException.name = 'ERROR-NO-CONTROLLED-REQUEST';
+            errorException.code = error.response.status;
+            errorException.exception = false;
+            throw errorException;
         });
     }
     catchParentResponse(error, res) {
@@ -42,10 +46,12 @@ class ResponseDTO {
                 result: false,
                 message: "Ha sucedido un error, por favor intente más tarde.",
                 data: null,
+                controlled: false,
             };
             if (error.exception) {
                 defaultRes.codeResponse = error.code;
                 defaultRes.message = error.message;
+                defaultRes.controlled = true;
                 return res.status(error.code).json(Object.assign({}, defaultRes));
             }
             return res.status(defaultRes.codeResponse).json(Object.assign({}, defaultRes));
