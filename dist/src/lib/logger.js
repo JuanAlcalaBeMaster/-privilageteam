@@ -21,10 +21,12 @@ class Logger {
     log(params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('params', params);
                 Logger.validationDataByDialect[`${this.config.dialect}`](params, this.config.level);
                 return yield Logger.actionByDialect[`${this.config.dialect}`](params, this.config.level);
             }
             catch (error) {
+                console.log('error', error);
                 throw error;
             }
         });

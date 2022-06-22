@@ -63,9 +63,11 @@ export default class Logger {
 
   async log(params: LogParamsInterface) {
     try {
+      console.log('params', params);
       Logger.validationDataByDialect[`${this.config.dialect}`](params, this.config.level);
       return await Logger.actionByDialect[`${this.config.dialect}`](params, this.config.level);
     } catch (error) {
+      console.log('error', error);
       throw error;
     }
   }
