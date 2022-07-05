@@ -35,7 +35,7 @@ class ResponseDTO {
             console.log('errror controolled', error);
             /** validation for errors from Requests ( axios , fetch ) */
             if (error.isAxiosError && error.response && !error.response.data.result && error.response.data.controlled) {
-                const data = error.response ? JSON.parse(JSON.stringify(error.response.data)) : error.message;
+                const data = error.response ? JSON.stringify(error.response.data) : error.message;
                 let dataLogError = {
                     date: { S: `${luxon_1.DateTime.now().toUTC().toISO()}` },
                     typeLog: { S: `ERROR-GENERATED-BY-REQUEST` },
@@ -61,7 +61,7 @@ class ResponseDTO {
                 throw errorException;
             }
             else if (error.isAxiosError) {
-                const data = error.response ? JSON.parse(JSON.stringify(error.response.data)) : error.message;
+                const data = error.response ? JSON.stringify(error.response.data) : error.message;
                 const status = error.response ? error.response.status : '500';
                 let dataLogError = {
                     date: { S: `${luxon_1.DateTime.now().toUTC().toISO()}` },
