@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Logger = exports.ErrorController = exports.HttpError = exports.EmailSMTP = exports.ActiveCampaign = exports.Request = exports.ResponseDTO = void 0;
+exports.Webhook = exports.Logger = exports.ErrorController = exports.HttpError = exports.EmailSMTP = exports.ActiveCampaign = exports.Request = exports.ResponseDTO = void 0;
 const axios_1 = __importDefault(require("./src/lib/axios"));
 exports.Request = axios_1.default;
 const errorHandling_1 = require("./src/lib/errorHandling");
@@ -18,3 +18,5 @@ const error_1 = __importDefault(require("./src/lib/error"));
 exports.ErrorController = error_1.default;
 const logger_1 = __importDefault(require("./src/lib/logger"));
 exports.Logger = logger_1.default;
+const webhook_1 = __importDefault(require("./src/lib/webhook"));
+exports.Webhook = webhook_1.default;
